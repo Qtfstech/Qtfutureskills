@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshop</title>
+  <meta name="description" content="Hands-on workshops in Cyber Security, Robotics and Space Tech." />
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      transition: background 0.4s ease;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: relative;
+    }
+    @media (max-width: 900px) {
+      body { overflow: auto; height: auto; min-height: 100vh; }
+    }
+
+    /* ===== Theme: Cyber Security (dark / matrix green) ===== */
+    body.theme-cybersecurity {
+      background: radial-gradient(circle at 20% 20%, #06180f 0%, #030a06 60%);
+      color: #d7ffe6;
+    }
+    body.theme-cybersecurity .accent { color: #39ff8f; }
+    body.theme-cybersecurity .badge { background: rgba(57, 255, 143, 0.12); border-color: rgba(57, 255, 143, 0.4); color: #39ff8f; }
+    body.theme-cybersecurity .price { color: #39ff8f; }
+    body.theme-cybersecurity .glyph { stroke: #39ff8f; }
+    body.theme-cybersecurity .particle { background: #39ff8f; }
+    body.theme-cybersecurity .info-card { border-color: rgba(57, 255, 143, 0.35); }
+
+    /* ===== Theme: Robotics (steel blue / electric) ===== */
+    body.theme-robotics {
+      background: radial-gradient(circle at 80% 20%, #10233a 0%, #060c16 60%);
+      color: #e4f1ff;
+    }
+    body.theme-robotics .accent { color: #4fc3ff; }
+    body.theme-robotics .badge { background: rgba(79, 195, 255, 0.12); border-color: rgba(79, 195, 255, 0.4); color: #4fc3ff; }
+    body.theme-robotics .price { color: #4fc3ff; }
+    body.theme-robotics .glyph { stroke: #4fc3ff; }
+    body.theme-robotics .particle { background: #4fc3ff; }
+    body.theme-robotics .info-card { border-color: rgba(79, 195, 255, 0.35); }
+
+    /* ===== Theme: Space Tech (deep purple / starfield) ===== */
+    body.theme-spacetech {
+      background: radial-gradient(circle at 30% 80%, #1a1030 0%, #08061a 60%);
+      color: #ece7ff;
+    }
+    body.theme-spacetech .accent { color: #b98cff; }
+    body.theme-spacetech .badge { background: rgba(185, 140, 255, 0.14); border-color: rgba(185, 140, 255, 0.45); color: #cdb0ff; }
+    body.theme-spacetech .price { color: #cdb0ff; }
+    body.theme-spacetech .glyph { stroke: #cdb0ff; }
+    body.theme-spacetech .particle { background: #cdb0ff; }
+    body.theme-spacetech .info-card { border-color: rgba(205, 176, 255, 0.4); }
+
+    /* ===== Shared layout ===== */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.5;
+      filter: blur(1px);
+      animation: drift 7s ease-in-out infinite;
+      z-index: 0;
+    }
+    @keyframes drift {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+      50% { transform: translateY(-24px) translateX(10px); opacity: 0.7; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    .topbar {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(8px, 1.6vh, 14px) clamp(16px, 3vw, 40px);
+      position: relative;
+      z-index: 2;
+    }
+    .badge {
+      font-size: clamp(0.66rem, 1vw, 0.8rem);
+      padding: 5px 16px;
+      border-radius: 999px;
+      border: 1px solid;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    main[data-workshop] {
+      display: none;
+      flex: 1 1 auto;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(18px, 3vw, 50px);
+      padding: clamp(10px, 1.6vh, 20px) clamp(20px, 5vw, 64px);
+      min-height: 0;
+      position: relative;
+      z-index: 2;
+    }
+    main[data-workshop].active { display: flex; }
+    @media (max-width: 900px) {
+      main[data-workshop] { flex-direction: column-reverse; text-align: center; overflow: auto; }
+    }
+
+    .icon-wrap {
+      flex: 0 0 auto;
+      animation: floatIcon 4.5s ease-in-out infinite;
+    }
+    .icon-wrap svg { width: clamp(120px, 20vw, 220px); height: clamp(120px, 20vw, 220px); }
+
+    .copy {
+      flex: 1 1 auto;
+      max-width: 720px;
+      min-width: 0;
+    }
+    .copy h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.8rem, 4.4vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      animation: fadeUp 0.7s ease both;
+    }
+    .copy .tagline {
+      margin: 0 0 14px;
+      font-size: clamp(1rem, 1.9vw, 1.35rem);
+      font-weight: 700;
+      opacity: 0.9;
+      animation: fadeUp 0.7s ease 0.05s both;
+    }
+    .copy p.desc {
+      margin: 0 0 16px;
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+      line-height: 1.75;
+      opacity: 0.85;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+    .copy p.desc strong { opacity: 1; }
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      animation: fadeUp 0.8s ease 0.15s both;
+    }
+    .price-row .price {
+      font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+      font-weight: 900;
+    }
+    .price-row .price-note {
+      font-size: clamp(0.72rem, 1.1vw, 0.86rem);
+      opacity: 0.7;
+    }
+    @media (max-width: 900px) {
+      .price-row { justify-content: center; }
+    }
+
+    .info-cards {
+      margin-top: clamp(14px, 2.4vh, 26px);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(8px, 1.4vw, 14px);
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+    .info-card {
+      border: 1px solid;
+      border-radius: 14px;
+      padding: clamp(10px, 1.6vh, 16px) 8px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.04);
+      transition: transform 0.2s ease;
+    }
+    .info-card:hover { transform: translateY(-4px); }
+    .info-card .ic-value {
+      display: block;
+      font-weight: 900;
+      font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+    }
+    .info-card .ic-label {
+      display: block;
+      margin-top: 2px;
+      font-size: clamp(0.62rem, 0.95vw, 0.74rem);
+      opacity: 0.75;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    footer {
+      flex: 0 0 auto;
+      text-align: center;
+      font-size: clamp(0.62rem, 1vw, 0.75rem);
+      opacity: 0.6;
+      padding: clamp(6px, 1.2vh, 10px) 0;
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <span class="badge" id="page-badge">Workshop Registration Open</span>
+  </header>
+
+  <!--
+    Single-file, three-workshop ad page. Cyber Security / Robotics / Space Tech
+    each live at their own URL (/cybersecurity, /robotics, /spacetech), but all
+    three routes serve THIS one file (see frontend/vite.config.js). The script
+    below reads the URL, applies the matching theme class to <body>, and
+    reveals only the matching <main data-workshop="..."> block.
+  -->
+
+  <!-- Cyber Security: shield + circuit glyph -->
+  <main data-workshop="cybersecurity">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="glyph" d="M100 15 L170 40 V95 C170 140 140 170 100 185 C60 170 30 140 30 95 V40 Z" stroke-width="6" />
+        <path class="glyph" d="M75 100 L95 120 L130 80" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+        <circle class="glyph" cx="100" cy="55" r="8" stroke-width="4" />
+      </svg>
+    </div>
+    <div class="copy">
+      <h1>Break In. Before They Do.</h1>
+      <p class="tagline accent">The Cyber Security Workshop</p>
+      <p class="desc">
+        One intensive, hands-on session where you think like a hacker to defend like a pro.
+        <strong>Ethical hacking, network security, and live penetration testing</strong> — using the same
+        tools real security teams use: Nmap, Burp Suite, Wireshark. It ends with a live
+        <strong>Capture-the-Flag</strong> challenge to prove what you've learned.
+      </p>
+      <div class="price-row">
+        <span class="price">₹499</span>
+        <span class="price-note">one-time workshop fee</span>
+      </div>
+      <div class="info-cards">
+        <div class="info-card"><span class="ic-value accent">₹499</span><span class="ic-label">Workshop Fee</span></div>
+        <div class="info-card"><span class="ic-value accent">1 Day</span><span class="ic-label">Hands-on Session</span></div>
+        <div class="info-card"><span class="ic-value accent">CTF</span><span class="ic-label">Live Challenge</span></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Robotics: robot head glyph -->
+  <main data-workshop="robotics">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="glyph" x="45" y="60" width="110" height="90" rx="18" stroke-width="6" />
+        <circle class="glyph" cx="80" cy="105" r="10" stroke-width="5" />
+        <circle class="glyph" cx="120" cy="105" r="10" stroke-width="5" />
+        <path class="glyph" d="M75 135 H125" stroke-width="6" stroke-linecap="round" />
+        <path class="glyph" d="M100 60 V30" stroke-width="5" stroke-linecap="round" />
+        <circle class="glyph" cx="100" cy="22" r="7" stroke-width="4" />
+        <path class="glyph" d="M45 90 H25 M155 90 H175" stroke-width="5" stroke-linecap="round" />
+      </svg>
+    </div>
+    <div class="copy">
+      <h1>Build It. Program It. Own It.</h1>
+      <p class="tagline accent">The Robotics Workshop</p>
+      <p class="desc">
+        Go from watching robots on YouTube to <strong>building and programming your own</strong> —
+        in a single hands-on session. Learn <strong>sensors, motors, controllers</strong> and
+        microcontroller programming on Arduino / Raspberry Pi, then walk away having built a
+        working robot prototype with your own hands.
+      </p>
+      <div class="price-row">
+        <span class="price">₹499</span>
+        <span class="price-note">one-time workshop fee</span>
+      </div>
+      <div class="info-cards">
+        <div class="info-card"><span class="ic-value accent">₹499</span><span class="ic-label">Workshop Fee</span></div>
+        <div class="info-card"><span class="ic-value accent">1 Day</span><span class="ic-label">Hands-on Session</span></div>
+        <div class="info-card"><span class="ic-value accent">Build</span><span class="ic-label">Your Own Robot</span></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Space Tech: rocket + orbit glyph -->
+  <main data-workshop="spacetech">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse class="glyph" cx="100" cy="100" rx="85" ry="34" stroke-width="4" opacity="0.6" />
+        <path class="glyph" d="M100 30 C120 55 120 110 100 150 C80 110 80 55 100 30 Z" stroke-width="6" />
+        <circle class="glyph" cx="100" cy="70" r="9" stroke-width="4" />
+        <path class="glyph" d="M85 135 L70 165 M115 135 L130 165 M100 150 L100 175" stroke-width="5" stroke-linecap="round" />
+      </svg>
+    </div>
+    <div class="copy">
+      <h1>The Sky Was Never The Limit.</h1>
+      <p class="tagline accent">The Space Tech Workshop</p>
+      <p class="desc">
+        Explore what it really takes to put something into orbit. Understand
+        <strong>satellites, orbital mechanics, and CubeSat design</strong>, get an introduction to
+        <strong>remote sensing and ground stations</strong>, and watch a live demo of a working mini
+        satellite model — all in one immersive workshop.
+      </p>
+      <div class="price-row">
+        <span class="price">₹499</span>
+        <span class="price-note">one-time workshop fee</span>
+      </div>
+      <div class="info-cards">
+        <div class="info-card"><span class="ic-value accent">₹499</span><span class="ic-label">Workshop Fee</span></div>
+        <div class="info-card"><span class="ic-value accent">1 Day</span><span class="ic-label">Hands-on Session</span></div>
+        <div class="info-card"><span class="ic-value accent">Live</span><span class="ic-label">Satellite Demo</span></div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="page-footer">Workshop Registration</footer>
+
+  <script>
+    (function () {
+      var WORKSHOPS = {
+        cybersecurity: "Break In. Before They Do. — Cyber Security Workshop",
+        robotics: "Build It. Program It. Own It. — Robotics Workshop",
+        spacetech: "The Sky Was Never The Limit. — Space Tech Workshop",
+      };
+
+      var pathSlug = window.location.pathname.replace(/^\/+|\/+$/g, "").split("/").pop();
+      var querySlug = new URLSearchParams(window.location.search).get("slug");
+      var slug = WORKSHOPS[pathSlug] ? pathSlug : querySlug;
+      if (!WORKSHOPS[slug]) slug = "cybersecurity"; // sensible default
+
+      document.body.classList.add("theme-" + slug);
+      document.querySelectorAll("main[data-workshop]").forEach(function (el) {
+        el.classList.toggle("active", el.getAttribute("data-workshop") === slug);
+      });
+      document.title = WORKSHOPS[slug];
+      document.getElementById("page-footer").textContent = WORKSHOPS[slug];
+
+      // Sprinkle a few floating particles for ambience.
+      var colors = 6;
+      for (var i = 0; i < colors; i++) {
+        var p = document.createElement("div");
+        p.className = "particle";
+        var size = 4 + Math.random() * 8;
+        p.style.width = size + "px";
+        p.style.height = size + "px";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.top = Math.random() * 100 + "%";
+        p.style.animationDelay = Math.random() * 4 + "s";
+        p.style.animationDuration = 5 + Math.random() * 4 + "s";
+        document.body.appendChild(p);
+      }
+
+      // Keep users from navigating "back" into whatever site redirected them here.
+      if (window.history && window.history.pushState) {
+        history.pushState(null, "", window.location.href);
+        window.addEventListener("popstate", function () {
+          history.pushState(null, "", window.location.href);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

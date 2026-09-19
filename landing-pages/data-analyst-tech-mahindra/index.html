@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Analyst Opening — Tech Mahindra</title>
+  <meta name="description" content="Data Analyst hiring opportunity at Tech Mahindra, with a 75% refund guarantee if not placed." />
+  <style>
+    :root {
+      --bg-1: #fffdf9;
+      --bg-2: #fff5eb;
+      --red: #d92b3a;
+      --red-soft: #ff9aa3;
+      --gold: #c69016;
+      --gold-soft: #f1d6a1;
+      --text: #231c31;
+      --text-soft: #685f77;
+      --border: rgba(20, 18, 42, 0.08);
+      --shadow: 0 18px 40px rgba(34, 20, 45, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg-1);
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: relative;
+      background: radial-gradient(circle at 84% 12%, #ffe5de 0%, transparent 42%),
+                  radial-gradient(circle at 10% 88%, #fff0d7 0%, transparent 50%),
+                  linear-gradient(160deg, var(--bg-1), var(--bg-2));
+    }
+    /* Soft ambient glow with ad-style warmth */
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(85px);
+      z-index: 0;
+      animation: pulse 7s ease-in-out infinite;
+    }
+    .glow.g1 { width: 330px; height: 330px; background: var(--red-soft); opacity: 0.18; top: -120px; right: -60px; }
+    .glow.g2 { width: 300px; height: 300px; background: var(--gold-soft); opacity: 0.22; bottom: -100px; left: -60px; animation-delay: 1.5s; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes shineSweep {
+      0% { transform: translateX(-140%) skewX(-22deg); }
+      100% { transform: translateX(220%) skewX(-22deg); }
+    }
+    .topbar {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(8px, 1.6vh, 14px) clamp(16px, 3vw, 40px);
+      position: relative;
+      z-index: 1;
+    }
+    .badge {
+      font-size: clamp(0.68rem, 1vw, 0.82rem);
+      padding: 7px 20px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--red);
+      border: 1px solid rgba(217, 43, 58, 0.18);
+      box-shadow: 0 10px 25px rgba(217, 43, 58, 0.08);
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      animation: slideUp 0.6s ease both;
+    }
+    main {
+      flex: 1 1 auto;
+      display: grid;
+      grid-template-columns: minmax(240px, 300px) minmax(0, 720px);
+      align-items: center;
+      justify-content: center;
+      gap: clamp(28px, 4vw, 68px);
+      padding: clamp(12px, 2vh, 24px) clamp(20px, 5vw, 74px);
+      min-height: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .copy-col {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 1.5vh, 16px);
+      max-width: 720px;
+    }
+    .cards-col {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 2vh, 22px);
+      width: 100%;
+      max-width: 290px;
+      animation: slideUp 0.8s ease 0.18s both;
+    }
+    @media (max-width: 900px) {
+      main { overflow: auto; grid-template-columns: 1fr; }
+      html, body { overflow: auto; }
+      .copy-col, .cards-col { max-width: 100%; width: 100%; text-align: center; }
+    }
+    .eyebrow {
+      margin: 0;
+      font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      animation: slideUp 0.65s ease both;
+    }
+    .company {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      margin: 0;
+      line-height: 1.05;
+      color: var(--text);
+      animation: slideUp 0.7s ease both;
+    }
+    .company .data-analyst {
+      font-size: clamp(2.7rem, 7vw, 5.6rem);
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, var(--red), #ff6b59, var(--red));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: slideUp 0.7s ease both, shimmer 6s linear infinite;
+    }
+    .company .subline {
+      font-size: clamp(1.15rem, 2.1vw, 1.85rem);
+      line-height: 1.18;
+    }
+    .company .tm {
+      color: var(--red);
+      position: relative;
+      display: inline-block;
+    }
+    .company .tm::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(217, 43, 58, 0.1), rgba(217, 43, 58, 0.85), rgba(217, 43, 58, 0.1));
+    }
+    .headline {
+      margin: 6px 0 0;
+      font-size: clamp(1rem, 1.65vw, 1.28rem);
+      font-weight: 700;
+      color: var(--gold);
+      animation: slideUp 0.7s ease 0.05s both;
+    }
+    .lede {
+      margin: 4px 0 0;
+      font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+      color: var(--text-soft);
+      max-width: 720px;
+      line-height: 1.65;
+      animation: slideUp 0.7s ease 0.1s both;
+    }
+    .lede strong { color: var(--text); }
+    .job-copy {
+      margin: 8px 0 0;
+      font-size: clamp(0.92rem, 1.32vw, 1.08rem);
+      color: var(--text);
+      max-width: 780px;
+      line-height: 1.78;
+      animation: slideUp 0.7s ease 0.15s both;
+    }
+    .job-copy .kw {
+      font-weight: 800;
+      color: var(--red);
+    }
+    .fee-row {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 2vh, 20px);
+    }
+    .info-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: clamp(18px, 2.8vh, 28px) clamp(14px, 2vw, 22px);
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      animation: floatCard 5.5s ease-in-out infinite;
+    }
+    .info-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -30%;
+      width: 32%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.68), rgba(255,255,255,0));
+      animation: shineSweep 5.2s linear infinite;
+    }
+    .info-card:hover {
+      transform: translateY(-6px);
+    }
+    .info-card .icon {
+      font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+      margin-bottom: 6px;
+    }
+    .info-card.fee-card {
+      border-color: rgba(198, 144, 22, 0.28);
+    }
+    .info-card.fee-card:hover {
+      box-shadow: 0 18px 34px rgba(198, 144, 22, 0.16);
+    }
+    .info-card.refund-card {
+      border-color: rgba(217, 43, 58, 0.22);
+    }
+    .info-card.refund-card:hover {
+      box-shadow: 0 18px 34px rgba(217, 43, 58, 0.15);
+    }
+    .info-card.opening-card {
+      border-color: rgba(35, 28, 49, 0.08);
+    }
+    .info-card.opening-card:hover {
+      box-shadow: 0 18px 34px rgba(35, 28, 49, 0.12);
+    }
+    .info-card .fee {
+      font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmer 3.5s linear infinite;
+    }
+    .info-card .refund-figure {
+      font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+      font-weight: 900;
+      color: var(--red);
+    }
+    .info-card .mini-title {
+      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      font-weight: 900;
+      color: var(--text);
+    }
+    .info-card .card-note {
+      margin-top: 6px;
+      font-size: clamp(0.72rem, 1.05vw, 0.86rem);
+      color: var(--text-soft);
+      font-weight: 700;
+      line-height: 1.55;
+    }
+    footer {
+      flex: 0 0 auto;
+      text-align: center;
+      font-size: clamp(0.64rem, 1vw, 0.76rem);
+      color: var(--text-soft);
+      padding: clamp(6px, 1.2vh, 10px) 0;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+
+  <header class="topbar">
+    <span class="badge">Now Hiring · Data Analyst</span>
+  </header>
+
+  <main>
+    <div class="cards-col">
+      <div class="fee-row">
+        <div class="info-card opening-card">
+          <div class="icon">📢</div>
+          <div class="mini-title">Live Opening</div>
+          <div class="card-note">A direct Data Analyst opportunity connected to the Tech Mahindra hiring path.</div>
+        </div>
+        <div class="info-card fee-card">
+          <div class="icon">💰</div>
+          <div class="fee">₹1,00,000</div>
+          <div class="card-note">Program Fee</div>
+        </div>
+        <div class="info-card refund-card">
+          <div class="icon">🛡️</div>
+          <div class="refund-figure">75%</div>
+          <div class="card-note">Refund If Not Placed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy-col">
+      <p class="eyebrow">Career Launch Opportunity</p>
+      <h1 class="company"><span class="data-analyst">DATA ANALYST</span><span class="subline">Opening at <span class="tm">Tech Mahindra</span></span></h1>
+      <p class="headline">A Live Data Analyst Opening. A Guided Path To Get You There.</p>
+      <p class="lede">
+        This isn't just another course — it's a <strong>direct, structured pathway</strong> into a real
+        Data Analyst opening at <strong>Tech Mahindra</strong>, built for people serious about getting hired.
+      </p>
+      <p class="job-copy">
+        You'll work with <span class="kw">real business data</span>, build
+        <span class="kw">dashboards &amp; reports</span> using Excel, SQL and BI tools, collaborate with
+        cross-functional teams, and present insights that actually drive decisions —
+        all while being coached toward the <span class="kw">Tech Mahindra hiring process</span>, with resume,
+        aptitude and interview preparation built in.
+      </p>
+    </div>
+  </main>
+
+  <footer>Data Analyst Opening — Tech Mahindra</footer>
+
+  <script>
+    // Keep users from navigating "back" into whatever site redirected them here.
+    if (window.history && window.history.pushState) {
+      history.pushState(null, "", window.location.href);
+      window.addEventListener("popstate", function () {
+        history.pushState(null, "", window.location.href);
+      });
+    }
+  </script>
+</body>
+</html>

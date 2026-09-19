@@ -1,0 +1,109 @@
+.impact-approach {
+  background: var(--cream-light);
+}
+
+.impact-approach__flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 0;
+}
+
+.impact-approach__step-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.impact-approach__step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 136px;
+  padding: 22px 10px;
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.impact-approach__step:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.impact-approach__num {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  color: rgba(12, 27, 58, 0.16);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.impact-approach__icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  place-items: center;
+  background: var(--gradient-brand);
+  box-shadow: 0 8px 16px rgba(241, 90, 41, 0.22);
+}
+
+.impact-approach__step p {
+  color: var(--navy);
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.impact-approach__arrow {
+  display: grid;
+  flex-shrink: 0;
+  width: 34px;
+  place-items: center;
+  animation: impactArrowPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes impactArrowPulse {
+  0%, 100% { transform: translateX(0); opacity: 0.7; }
+  50% { transform: translateX(4px); opacity: 1; }
+}
+
+@media (max-width: 980px) {
+  .impact-approach__arrow {
+    width: 24px;
+  }
+  .impact-approach__step {
+    width: 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  .impact-approach__flow {
+    flex-direction: column;
+  }
+  .impact-approach__step-wrap {
+    flex-direction: column;
+  }
+  .impact-approach__step {
+    width: 220px;
+  }
+  .impact-approach__arrow {
+    width: auto;
+    padding: 4px 0;
+    transform: rotate(90deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impact-approach__step,
+  .impact-approach__arrow {
+    transition: none;
+    animation: none;
+  }
+}

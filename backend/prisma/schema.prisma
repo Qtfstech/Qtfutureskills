@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model EventRegistration {
+  id        Int      @id @default(autoincrement())
+  name      String
+  mobile    String
+  email     String
+  address   String   @db.Text
+  checkedIn Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("event_registrations")
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@map("contact_messages")
+}
+
+model Event {
+  id          Int          @id @default(autoincrement())
+  slug        String       @unique
+  title       String
+  description String       @db.Text
+  eventDate   DateTime?
+  sortOrder   Int          @default(0)
+  createdAt   DateTime     @default(now())
+  photos      EventPhoto[]
+
+  @@map("events")
+}
+
+model EventPhoto {
+  id        Int      @id @default(autoincrement())
+  eventId   Int
+  imageUrl  String
+  caption   String?
+  createdAt DateTime @default(now())
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@map("event_photos")
+}
