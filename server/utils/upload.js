@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import multer from 'multer';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-export const UPLOADS_ROOT = path.resolve(__dirname, '../../uploads');
+export const UPLOADS_ROOT = path.resolve(__dirname, '../../public/uploads');
 export const EVENTS_UPLOAD_DIR = path.join(UPLOADS_ROOT, 'events');
 
 fs.mkdirSync(EVENTS_UPLOAD_DIR, { recursive: true });

@@ -22,6 +22,13 @@ frontend/.vite/
 # Backend runtime uploads
 backend/uploads/*
 !backend/uploads/.gitkeep
+uploads/*
+!uploads/.gitkeep
+public/uploads/*
+!public/uploads/.gitkeep
+!public/uploads/events
+public/uploads/events/*
+!public/uploads/events/.gitkeep
 
 # Coverage and test output
 coverage/

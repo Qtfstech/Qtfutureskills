@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
@@ -24,7 +25,15 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
+const publicUploads = path.resolve(__dirname, '../public/uploads');
+const legacyUploads = path.resolve(__dirname, '../uploads');
+if (!fs.existsSync(publicUploads)) {
+  fs.mkdirSync(publicUploads, { recursive: true });
+}
+app.use('/uploads', express.static(publicUploads));
+if (fs.existsSync(legacyUploads)) {
+  app.use('/uploads', express.static(legacyUploads));
+}
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 app.use('/api/auth', auth);

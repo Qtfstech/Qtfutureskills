@@ -30,12 +30,17 @@ async function startServer() {
   app.use(express.json());
 
   // Static uploads and public assets
-  const uploadsDir = path.resolve(process.cwd(), 'uploads');
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
+  const publicDir = path.resolve(process.cwd(), 'public');
+  const publicUploadsDir = path.resolve(publicDir, 'uploads');
+  const legacyUploadsDir = path.resolve(process.cwd(), 'uploads');
+  if (!fs.existsSync(publicUploadsDir)) {
+    fs.mkdirSync(publicUploadsDir, { recursive: true });
   }
-  app.use('/uploads', express.static(uploadsDir));
-  app.use(express.static(path.resolve(process.cwd(), 'public')));
+  app.use('/uploads', express.static(publicUploadsDir));
+  if (fs.existsSync(legacyUploadsDir)) {
+    app.use('/uploads', express.static(legacyUploadsDir));
+  }
+  app.use(express.static(publicDir));
 
   // Health check
   app.get('/health', (_req, res) => res.json({ ok: true }));
