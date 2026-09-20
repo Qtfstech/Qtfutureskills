@@ -1,6 +1,6 @@
 # QT Future Skills — Standalone Landing Pages
 
-Frontend-only, standalone landing/ad pages. Not part of the React app in `frontend/` —
+Frontend-only, standalone landing/ad pages. Not part of the React app in `src/` —
 no shared routing, navbar, forms, or payment gateway. Each page is a single, self-contained
 static HTML file (inline CSS/JS) styled with a light cream background and orange accents,
 designed to fit on one screen with no scrolling on typical desktop sizes.
@@ -22,13 +22,13 @@ and shows only the matching workshop's content, hiding the other two.
 No page has a payment flow, QR code, or registration form — they're pure informational/ad
 pages by design.
 
-## Local dev (via the React app's Vite server)
+## Local dev (via the React app's dev server)
 
-These files are copied into `frontend/public/` and `frontend/vite.config.js` has a small
-dev-server middleware (`standaloneLandingPages`) that serves them verbatim on the routes
-above — bypassing Vite's normal HTML/SPA handling, which would otherwise intercept these
-extensionless URLs and always return the React app shell. If you edit a page, update it in
-both `frontend/public/<folder>/index.html` and here in `landing-pages/` to keep them in sync.
+These files are copied into `public/`, and both `server.ts` and `vite.config.ts` route the
+slugs above (`STANDALONE_LANDING_ROUTES`) to them verbatim — bypassing Vite's normal
+HTML/SPA handling, which would otherwise intercept these extensionless URLs and always
+return the React app shell. If you edit a page, update it in both `public/<folder>/index.html`
+and here in `landing-pages/` to keep them in sync.
 
 ## Deploying at `qtfutureskills.org/<slug>` without a visible redirect / back button
 

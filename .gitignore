@@ -16,12 +16,8 @@ pnpm-debug.log*
 # Build output
 dist/
 build/
-frontend/dist/
-frontend/.vite/
 
-# Backend runtime uploads
-backend/uploads/*
-!backend/uploads/.gitkeep
+# Runtime uploads
 uploads/*
 !uploads/.gitkeep
 public/uploads/*

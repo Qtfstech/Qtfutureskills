@@ -1,1 +1,0 @@
--- No schema changes are required for the current Prisma schema.
