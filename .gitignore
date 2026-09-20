@@ -13,7 +13,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Frontend build output
+# Build output
+dist/
+build/
 frontend/dist/
 frontend/.vite/
 

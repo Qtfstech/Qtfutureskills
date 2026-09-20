@@ -1,0 +1,105 @@
+.impact {
+  padding: 0 0 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.impact__band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  background: var(--navy);
+  background-image: radial-gradient(circle at 85% 20%, rgba(241, 90, 41, 0.22), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(45, 212, 191, 0.14), transparent 40%);
+  border-radius: var(--radius-lg);
+  padding: 34px 40px;
+  box-shadow: var(--shadow-lg);
+}
+
+.impact__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 8px 12px;
+  position: relative;
+  border-radius: var(--radius-sm);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.impact__item:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.impact__item:hover .impact__icon {
+  transform: scale(1.12);
+  background: rgba(241, 90, 41, 0.22);
+  border-color: rgba(241, 90, 41, 0.4);
+}
+
+.impact__item:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 56px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.impact__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  margin-bottom: 4px;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.impact__value {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.impact__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+@media (max-width: 860px) {
+  .impact__band {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 12px;
+    padding: 28px 24px;
+  }
+  .impact__item:nth-child(3)::before {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .impact__value {
+    font-size: 28px;
+  }
+  .impact__label {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impact__item,
+  .impact__icon {
+    transition: none;
+  }
+}

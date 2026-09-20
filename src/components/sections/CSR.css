@@ -1,0 +1,241 @@
+.csr {
+  --csr-image-width: 100%;
+  --csr-image-scale: 1.04;
+  --csr-content-opacity: 0;
+  --csr-content-move: 65px;
+
+  position: relative;
+  background: var(--cream-light);
+}
+
+.csr.section {
+  padding: 0;
+}
+
+.csr__feature-scroll {
+  position: relative;
+  height: 150vh;
+}
+
+.csr__sticky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 92px);
+  height: calc(100svh - 92px);
+  overflow: hidden;
+  background: var(--cream-light);
+}
+
+.csr__image-wrap {
+  position: relative;
+  z-index: 2;
+  width: var(--csr-image-width);
+  flex: 0 0 auto;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--cream-light);
+  box-shadow: var(--shadow-lg);
+  will-change: width;
+}
+
+.csr__image-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(var(--csr-image-scale));
+  will-change: transform;
+}
+
+.csr__content {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  width: 48%;
+  height: 100%;
+  padding: clamp(40px, 6vw, 110px);
+  background: var(--cream-light);
+  opacity: var(--csr-content-opacity);
+  transform: translateX(var(--csr-content-move));
+  will-change: opacity, transform;
+}
+
+.csr__content-inner {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.csr__content .section-heading {
+  margin-bottom: 0;
+}
+
+.csr__content .section-heading p {
+  max-width: 570px;
+}
+
+.csr__bottom {
+  position: relative;
+  z-index: 3;
+  padding-top: clamp(36px, 4vw, 64px);
+  padding-bottom: clamp(80px, 9vw, 130px);
+  background: var(--cream-light);
+}
+
+.csr__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 44px;
+}
+
+.csr__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 14px 26px 14px 14px;
+  border: 1px solid rgba(12, 27, 58, 0.08);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.csr__chip:hover {
+  color: var(--white);
+  background: var(--navy);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.csr__chip-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  place-items: center;
+}
+
+.csr__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.csr__footer p {
+  margin: 0;
+  color: var(--navy);
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+@media (max-width: 860px) {
+  .csr__feature-scroll {
+    height: auto;
+  }
+
+  .csr__sticky {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+    gap: 40px;
+    padding-bottom: 30px;
+    overflow: visible;
+  }
+
+  .csr__image-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .csr__content {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+    padding: 30px 24px;
+    opacity: 1;
+    transform: none;
+  }
+
+  .csr__content-inner {
+    max-width: 680px;
+  }
+
+  .csr__bottom {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 560px) {
+  .csr__image-wrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .csr__content {
+    padding: 20px 18px;
+  }
+
+  .csr__chip {
+    padding: 10px 18px 10px 10px;
+    font-size: 13.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 861px) {
+  .csr__feature-scroll {
+    height: auto;
+  }
+
+  .csr__sticky {
+    position: relative;
+    display: grid;
+    grid-template-columns: 52% 48%;
+    height: auto;
+    min-height: 650px;
+  }
+
+  .csr__image-wrap {
+    width: 100%;
+  }
+
+  .csr__content {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    transform: none;
+  }
+
+  .csr__image-wrap img,
+  .csr__chip {
+    transition: none;
+  }
+}

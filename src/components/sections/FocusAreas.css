@@ -1,0 +1,220 @@
+.focus-areas {
+  overflow: hidden;
+  background: var(--cream-light);
+}
+
+.focus-areas__heading {
+  margin: 0 auto 44px;
+  max-width: 620px;
+  text-align: center;
+}
+
+.focus-areas__heading h2 {
+  font-size: clamp(32px, 4vw, 46px);
+}
+
+.focus-areas__carousel {
+  position: relative;
+}
+
+.focus-areas__stage {
+  position: relative;
+  height: 500px;
+  max-width: 1160px;
+  margin: 0 auto;
+  perspective: 1200px;
+}
+
+.focus-areas__card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(32vw, 380px);
+  min-height: 456px;
+  overflow: hidden;
+  border: 1px solid rgba(12, 27, 58, 0.08);
+  border-radius: 18px;
+  background: var(--white);
+  box-shadow: 0 18px 34px rgba(12, 27, 58, 0.14);
+  transition: transform 900ms cubic-bezier(0.22, 0.8, 0.22, 1), opacity 700ms ease, filter 700ms ease, box-shadow 700ms ease;
+  will-change: transform, filter;
+}
+
+.focus-areas__card--center {
+  z-index: 3;
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 28px 48px rgba(12, 27, 58, 0.22);
+}
+
+.focus-areas__card--center:hover {
+  transform: translateX(-50%) translateY(-8px) scale(1.02);
+  box-shadow: 0 34px 58px rgba(12, 27, 58, 0.28);
+}
+
+.focus-areas__card--left,
+.focus-areas__card--right {
+  z-index: 1;
+  opacity: 0.72;
+  filter: saturate(0.82) brightness(0.94) blur(1.5px);
+  box-shadow: 0 18px 34px rgba(12, 27, 58, 0.14);
+}
+
+.focus-areas__card--left {
+  transform: translateX(calc(-50% - min(30vw, 365px))) translateY(42px) scale(0.78);
+}
+
+.focus-areas__card--right {
+  transform: translateX(calc(-50% + min(30vw, 365px))) translateY(42px) scale(0.78);
+}
+
+.focus-areas__tilt {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  transform: rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
+  transition: transform 0.4s cubic-bezier(0.22, 0.8, 0.22, 1);
+  transform-style: preserve-3d;
+}
+
+.focus-areas__image-wrap {
+  position: relative;
+  height: 235px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.focus-areas__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.12);
+  transition: transform 900ms cubic-bezier(0.22, 0.8, 0.22, 1);
+}
+
+.focus-areas__card--center .focus-areas__image {
+  transform: scale(1);
+}
+
+.focus-areas__card--center:hover .focus-areas__image {
+  transform: scale(1.06);
+}
+
+.focus-areas__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 28px;
+}
+
+.focus-areas__card--center .focus-areas__content h3,
+.focus-areas__card--center .focus-areas__content p {
+  animation: focusAreasContentIn 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.focus-areas__card--center .focus-areas__content h3 {
+  animation-delay: 180ms;
+}
+
+.focus-areas__card--center .focus-areas__content p {
+  animation-delay: 280ms;
+}
+
+@keyframes focusAreasContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.focus-areas__content h3 {
+  margin-bottom: 14px;
+  font-size: 23px;
+  line-height: 1.25;
+}
+
+.focus-areas__content p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .focus-areas__heading {
+    margin-bottom: 32px;
+  }
+
+  .focus-areas__stage {
+    height: 450px;
+  }
+
+  .focus-areas__card {
+    width: min(76vw, 360px);
+    min-height: 425px;
+  }
+
+  .focus-areas__card--left {
+    transform: translateX(calc(-50% - 53vw)) translateY(36px) scale(0.68);
+  }
+
+  .focus-areas__card--right {
+    transform: translateX(calc(-50% + 53vw)) translateY(36px) scale(0.68);
+  }
+
+  .focus-areas__image-wrap {
+    height: 215px;
+  }
+
+  .focus-areas__content {
+    padding: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .focus-areas__stage {
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .focus-areas__card,
+  .focus-areas__card--center,
+  .focus-areas__card--left,
+  .focus-areas__card--right,
+  .focus-areas__card--center:hover {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    transform: none;
+    opacity: 1;
+    filter: none;
+    transition: none;
+  }
+
+  .focus-areas__image,
+  .focus-areas__card--center:hover .focus-areas__image {
+    transform: none;
+    transition: none;
+  }
+
+  .focus-areas__tilt {
+    transform: none;
+    transition: none;
+  }
+
+  .focus-areas__content h3,
+  .focus-areas__content p {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

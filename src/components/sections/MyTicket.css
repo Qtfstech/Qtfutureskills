@@ -1,0 +1,242 @@
+.ticket-page {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.ticket-page__header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.ticket-page__eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+
+.ticket-page__header h1 {
+  font-size: 28px;
+}
+
+.ticket-page__header h1 span {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ticket {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.ticket__top {
+  background: var(--gradient-brand);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticket__brand {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.ticket__top-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticket__download {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(12, 27, 58, 0.12);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ticket__download:hover {
+  background: rgba(12, 27, 58, 0.22);
+}
+
+.ticket__download:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.ticket__pass-tag {
+  background: var(--navy);
+  color: var(--cream);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.ticket__body {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  align-items: center;
+}
+
+.ticket__qr {
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 0 20px rgba(241, 90, 41, 0.25);
+}
+
+.ticket__qr-canvas {
+  border-radius: 4px;
+  display: block;
+}
+
+.ticket__info {
+  flex: 1;
+  color: var(--chalk, #f8f7f2);
+}
+
+.ticket__label {
+  font-size: 11px;
+  color: var(--orange-light);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.ticket__name {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: Georgia, serif;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.ticket__sub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 2px;
+}
+
+.ticket__badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.ticket__badge {
+  background: rgba(241, 90, 41, 0.18);
+  border: 1px solid rgba(241, 90, 41, 0.4);
+  color: var(--orange-light);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.ticket__perforation {
+  border-top: 2px dashed rgba(255, 255, 255, 0.18);
+  margin: 0 16px;
+}
+
+.ticket__bottom {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticket__value {
+  font-size: 13px;
+  color: var(--orange-light);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.ticket__value--light {
+  color: #fff;
+}
+
+.ticket__status {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.ticket__status-pill {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  background: var(--cream-light);
+  color: var(--muted);
+}
+
+.ticket__status-pill--in {
+  background: rgba(45, 212, 191, 0.15);
+  color: var(--navy);
+}
+
+@media (max-width: 480px) {
+  .ticket-page__header h1 {
+    font-size: 23px;
+  }
+  .ticket__top {
+    padding: 10px 14px;
+  }
+  .ticket__brand {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  .ticket__body {
+    flex-direction: column;
+    text-align: center;
+    padding: 18px;
+  }
+  .ticket__badges {
+    justify-content: center;
+  }
+  .ticket__bottom {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .ticket__brand {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  .ticket__pass-tag {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+  .ticket__bottom {
+    font-size: 11px;
+  }
+  .ticket__value {
+    font-size: 12px;
+  }
+}
